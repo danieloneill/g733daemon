@@ -403,6 +403,9 @@ void printPacket(quint8 *data_read, int r)
 
 void HeadsetHID::readFromDevice()
 {
+    if( !m_handle )
+        return;
+
     quint8 data_read[7];
     memset( data_read, 0, sizeof(data_read) );
     int r = hid_read_timeout(m_handle, data_read, 7, REQUEST_TIMEOUT);
